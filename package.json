@@ -13,9 +13,11 @@
   "dependencies": {
     "expo": "~52.0.46",
     "expo-status-bar": "~2.0.1",
+    "lucide-react-native": "^0.503.0",
     "react": "18.3.1",
     "react-native": "0.76.9",
-    "react-native-mmkv": "^3.2.0"
+    "react-native-mmkv": "^3.2.0",
+    "react-native-svg": "15.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
