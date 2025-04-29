@@ -1,8 +1,6 @@
 import Example from "@/screens/Example";
-import { ThemeProvider } from "@/utils/ThemeContext";
-import { StatusBar } from "expo-status-bar";
+import { ThemeProvider, useTheme } from "@/utils/ThemeContext";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   return (

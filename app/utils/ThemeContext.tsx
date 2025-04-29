@@ -1,4 +1,11 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+} from "react";
+import { StorageUtils } from "./Storage";
 
 interface ThemeColors {
   primary: string;
@@ -100,13 +107,31 @@ const darkTheme: ThemeColors = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  // Initialize theme from storage or default to light theme
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    return StorageUtils.getThemePreference();
+  });
 
   const theme = isDarkMode ? darkTheme : lightTheme;
 
+  // Toggle theme and save preference to storage
   const toggleTheme = (): void => {
-    setIsDarkMode((prevMode) => !prevMode);
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      StorageUtils.saveThemePreference(newMode);
+      return newMode;
+    });
   };
+
+  // Effect to handle system theme changes or initial load
+  useEffect(() => {
+    // You could add system theme detection here if needed
+    // For now, we're just ensuring the stored preference is applied
+    const savedPreference = StorageUtils.getThemePreference();
+    if (savedPreference !== isDarkMode) {
+      setIsDarkMode(savedPreference);
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, isDarkMode, toggleTheme }}>

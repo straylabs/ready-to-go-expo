@@ -5,6 +5,7 @@ const config: ExpoConfig = {
   slug: "cro",
   version: "1.0.0",
   icon: "./branding/icon.png",
+  newArchEnabled: true,
   android: {
     package: "com.straylabs.cro",
     versionCode: 1,
