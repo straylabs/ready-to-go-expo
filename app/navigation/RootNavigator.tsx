@@ -43,7 +43,7 @@ function TabNavigator() {
 export default function RootNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator id={undefined}>
+      <Stack.Navigator id={undefined} screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name="Tabs"
           component={TabNavigator}
