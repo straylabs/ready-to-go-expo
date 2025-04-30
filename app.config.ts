@@ -14,6 +14,9 @@ const config: ExpoConfig = {
     bundleIdentifier: "com.straylabs.cro",
     buildNumber: "1",
   },
+  web: {
+    bundler: "metro",
+  },
 };
 
 export default config;
