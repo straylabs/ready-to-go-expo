@@ -2,8 +2,7 @@ import { MMKV } from "react-native-mmkv";
 
 // Define storage keys as a type to ensure consistency
 export const enum StorageKey {
-  USER_ID = "user_id",
-  USER = "user",
+  AUTH_STATE = "auth_state",
   APP_THEME = "app_theme",
 }
 
