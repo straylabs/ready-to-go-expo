@@ -16,6 +16,7 @@ interface InputProps extends TextInputProps {
   leftElement?: ReactNode;
   rightElement?: ReactNode;
   isPassword?: boolean;
+  footerElement?: ReactNode; // New prop for footer element
 }
 
 const Input = ({
@@ -25,6 +26,7 @@ const Input = ({
   rightElement,
   isPassword,
   secureTextEntry,
+  footerElement, // Destructure the new prop
   style,
   ...props
 }: InputProps) => {
@@ -43,7 +45,10 @@ const Input = ({
 
   // Generate password visibility toggle element
   const passwordToggleElement = shouldUsePasswordToggle ? (
-    <Pressable onPress={togglePasswordVisibility} style={styles.iconContainer}>
+    <Pressable
+      onPress={togglePasswordVisibility}
+      style={[styles.iconContainer, styles.passwordToggle]}
+    >
       {isPasswordVisible ? (
         <EyeOff size={20} color={theme.textSecondary} />
       ) : (
@@ -85,12 +90,15 @@ const Input = ({
           {...props}
         />
         {finalRightElement && (
-          <View style={styles.iconContainer}>{finalRightElement}</View>
+          <View style={[styles.iconContainer, styles.rightIconContainer]}>
+            {finalRightElement}
+          </View>
         )}
       </View>
       {error && (
         <Text style={[styles.error, { color: theme.error }]}>{error}</Text>
       )}
+      {footerElement && <View style={styles.footer}>{footerElement}</View>}
     </View>
   );
 };
@@ -110,6 +118,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     overflow: "hidden",
+    height: 48, // Ensure consistent height for the input container
   },
   input: {
     flex: 1,
@@ -125,13 +134,23 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     paddingHorizontal: 12,
-    height: "100%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  rightIconContainer: {
+    justifyContent: "center", // Ensure proper alignment
+    alignItems: "center", // Ensure proper alignment
+    height: "100%", // Ensure consistent height for the right element
+  },
+  passwordToggle: {
+    height: 48, // Ensure consistent height for the password toggle
   },
   error: {
     fontSize: 14,
     marginTop: 4,
+  },
+  footer: {
+    marginTop: 8,
   },
 });
 

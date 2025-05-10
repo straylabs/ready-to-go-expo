@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { StorageUtils } from "./Storage";
+import { StorageKey, StorageUtils } from "./Storage";
 
 interface ThemeColors {
   primary: string;
@@ -109,7 +109,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Initialize theme from storage or default to light theme
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    return StorageUtils.getThemePreference();
+    return StorageUtils.get(StorageKey.APP_THEME);
   });
 
   const theme = isDarkMode ? darkTheme : lightTheme;
@@ -118,7 +118,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const toggleTheme = (): void => {
     setIsDarkMode((prevMode) => {
       const newMode = !prevMode;
-      StorageUtils.saveThemePreference(newMode);
+      StorageUtils.set(StorageKey.APP_THEME, newMode);
       return newMode;
     });
   };
@@ -127,9 +127,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     // You could add system theme detection here if needed
     // For now, we're just ensuring the stored preference is applied
-    const savedPreference = StorageUtils.getThemePreference();
+    const savedPreference = StorageUtils.get(StorageKey.APP_THEME);
     if (savedPreference !== isDarkMode) {
-      setIsDarkMode(savedPreference);
+      setIsDarkMode(Boolean(savedPreference));
     }
   }, []);
 

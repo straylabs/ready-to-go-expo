@@ -4,15 +4,14 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 /** Root Stack Param List */
 // TODO:  Add your screen names here
 export type RootStackParamList = {
+  Login: undefined;
   Tabs: NavigatorScreenParams<TabParamList>;
-  Details: { itemId: number };
 };
 
 /** Tab Param List */
 // TODO:  Add your bottom tab screen names here
 export type TabParamList = {
   Home: undefined;
-  Settings: undefined;
 };
 
 /**
