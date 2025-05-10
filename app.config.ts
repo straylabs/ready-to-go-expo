@@ -17,6 +17,7 @@ const config: ExpoConfig = {
   web: {
     bundler: "metro",
   },
+  plugins: ["expo-font"],
 };
 
 export default config;
