@@ -4,15 +4,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { RootStackParamList, TabParamList } from "./types";
 import HomeScreen from "@/screens/HomeScreen";
-import SettingsScreen from "@/screens/SettingsScreen";
-import DetailsScreen from "@/screens/DetailsScreen";
 import { useTheme } from "@/utils/ThemeContext";
 import { Home, Settings } from "lucide-react-native";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
 function TabNavigator() {
-  const { theme, isDarkMode } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <Tab.Navigator
@@ -36,7 +34,6 @@ function TabNavigator() {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }
@@ -49,7 +46,6 @@ export default function RootNavigator() {
           component={TabNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

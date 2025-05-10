@@ -82,12 +82,6 @@ const Header: React.FC<HeaderProps> = ({
           styles.container,
           {
             backgroundColor: transparent ? "transparent" : theme.background,
-            borderBottomColor: transparent ? "transparent" : theme.border,
-            paddingTop: transparent
-              ? Platform.OS === "ios"
-                ? 44
-                : StatusBar.currentHeight
-              : 0,
           },
           containerStyle,
         ]}
@@ -131,11 +125,8 @@ const Header: React.FC<HeaderProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    height: 56,
     flexDirection: "row",
     alignItems: "center",
-    borderBottomWidth: 1,
-    paddingHorizontal: 16,
   },
   leftContainer: {
     minWidth: 40,
@@ -150,7 +141,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     flex: 1,
     justifyContent: "center",
-    marginHorizontal: 8,
+    alignItems: "center",
   },
   centerTitle: {
     alignItems: "center",
@@ -158,6 +149,7 @@ const styles = StyleSheet.create({
   titleWrapper: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 18,
