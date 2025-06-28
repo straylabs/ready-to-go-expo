@@ -23,6 +23,8 @@ const config: ExpoConfig = {
   },
   web: {
     bundler: "metro",
+    name: "Straylabs",
+    favicon: "./branding/icon.png",
   },
   plugins: ["expo-font"],
 };
